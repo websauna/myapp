@@ -1,0 +1,13 @@
+{% extends "site/base.html" %}
+
+{% block content %}
+  <h1>{{ question.question_text }}</h1>
+
+  <ul>
+    {% for choice in choices %}
+        <ol>{{ choice.choice_text }} -- {{ choice.votes }} votes</ol>
+    {% endfor %}
+  </ul>
+
+  <a href="{{ 'detail'|route_url(question_uuid=question.uuid|uuid_to_slug) }}">Vote again?</a>
+{% endblock %}

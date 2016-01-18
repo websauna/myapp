@@ -1,0 +1,19 @@
+{# Template for home view #}
+
+{% extends "site/base.html" %}
+
+{% block content %}
+    {% if latest_question_list %}
+        <ul>
+        {% for question in latest_question_list %}
+            <li>
+              <a href="{{ 'detail'|route_url(question_uuid=question.uuid|uuid_to_slug) }}">
+                {{ question.question_text }}
+              </a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "site/base.html" %}
+
+{% block extra_head %}
+<style>
+  .form-vote {
+    margin: 20px 0;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ question.question_text }}</h1>
+
+    {% if error_message %}
+      <div class="alert alert-danger">
+        {{ error_message }}
+      </div>
+    {% endif %}
+
+    {% if success_message %}
+      <div class="alert alert-success">
+        {{ success_message }}
+      </div>
+    {% endif %}
+
+    <form class="form-vote" action="{{ 'detail'|route_url(question_uuid=question.uuid|uuid_to_slug) }}" method="post">
+      <input name="csrf_token" type="hidden" value="{{ request.session.get_csrf_token() }}">
+
+
+      {% for choice in question.choices %}
+        <div class="radio">
+          <label for="choice{{ loop.counter }}">
+            <input type="radio"
+                   name="choice"
+                   value="{{ choice.uuid|uuid_to_slug }}">
+            {{ choice.choice_text }}
+          </label>
+        </div>
+      {% endfor %}
+
+      <button type="submit" class="btn btn-default">
+        Vote
+      </button>
+    </form>
+{% endblock %}
