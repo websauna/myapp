@@ -232,7 +232,7 @@ WebOb==1.5.1
 
 -e git+https://github.com/websauna/websauna.git@master#egg=websauna
 
-websauna.viewconfig==0.1.1
+websauna.viewconfig==0.1.2
 
 WebTest==2.0.20
 
