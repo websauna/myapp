@@ -7,7 +7,6 @@ from pyramid.httpexceptions import HTTPFound
 from pyramid.session import check_csrf_token
 from websauna.system.core import messages
 from websauna.system.http import Request
-from pyramid.response import Response
 from websauna.system.core.route import simple_route
 from websauna.system.core.route import decode_uuid
 from websauna.utils.slug import slug_to_uuid
