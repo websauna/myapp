@@ -8,7 +8,6 @@ from pyramid.session import check_csrf_token
 from websauna.system.core import messages
 from websauna.system.http import Request
 from websauna.system.core.route import simple_route
-from websauna.system.core.route import decode_uuid
 from websauna.utils.slug import slug_to_uuid
 from websauna.utils.slug import uuid_to_slug
 
@@ -22,8 +21,12 @@ def home(request: Request):
     return locals()
 
 
-@simple_route("/questions/{question_uuid}/results", route_name="results", renderer="myapp/results.html", custom_predicates=(decode_uuid,))
-def results(request: Request, question_uuid: UUID):
+@simple_route("/questions/{question_uuid}/results", route_name="results", renderer="myapp/results.html")
+def results(request: Request):
+
+    # Convert base64 encoded UUID string from request path to Python UUID object
+    question_uuid = slug_to_uuid(request.matchdict["question_uuid"])
+
     question = request.dbsession.query(Question).filter_by(uuid=question_uuid).first()
     if not question:
         raise HTTPNotFound()
@@ -31,8 +34,12 @@ def results(request: Request, question_uuid: UUID):
     return locals()
 
 
-@simple_route("/questions/{question_uuid}", route_name="detail", renderer="myapp/detail.html", custom_predicates=(decode_uuid,))
-def detail(request: Request, question_uuid: UUID):
+@simple_route("/questions/{question_uuid}", route_name="detail", renderer="myapp/detail.html")
+def detail(request: Request):
+
+    # Convert base64 encoded UUID string from request path to Python UUID object
+    question_uuid = slug_to_uuid(request.matchdict["question_uuid"])
+
     question = request.dbsession.query(Question).filter_by(uuid=question_uuid).first()
     if not question:
         raise HTTPNotFound()
