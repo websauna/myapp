@@ -118,7 +118,7 @@ py==1.4.31
 
 Pygments==2.0.2
 
-pyramid==1.6
+pyramid==1.7
 
 pyramid-autodoc==0.0.7
 
@@ -140,7 +140,7 @@ pyramid-mailer==0.14.1
 
 pyramid-mako==1.0.2
 
-pyramid-notebook==0.1.10
+pyramid-notebook==0.2.0
 
 pyramid-redis-sessions==1.0.1
 
@@ -204,7 +204,7 @@ sphinxcontrib-httpdomain==1.4.0
 
 splinter==0.7.3
 
-SQLAlchemy==1.0.11
+SQLAlchemy==1.1.4
 
 sqlparse==0.1.16
 
